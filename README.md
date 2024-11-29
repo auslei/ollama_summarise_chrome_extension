@@ -2,7 +2,7 @@
 
 A Chrome extension that allows you to summarize the content of any active web page using the **Ollama** local LLM API. With just one click, the extension extracts visible content, generates a concise summary, and displays it in a user-friendly popup.
 
-![Screenshot of the Extension](Screenshot_resized_1280x800.png)
+![Screenshot of the Extension](summarised.png)
 
 ---
 
@@ -45,7 +45,10 @@ A Chrome extension that allows you to summarize the content of any active web pa
    ```bash
    launchctl setenv OLLAMA_ORIGINS "*"
    ```
-
+4. Download a model:
+   ```bash
+   ollama pull llama3.2
+   ```
    > **Note**: This allows the extension to communicate with the Ollama API.
 
 4. Ensure the API is running at `http://localhost:11434`.
@@ -69,9 +72,11 @@ A Chrome extension that allows you to summarize the content of any active web pa
 
 ## **How to Use the Extension**
 1. Navigate to any webpage you want to summarize.
-2. Click the **Summarizer** icon in the Chrome toolbar.
-3. Wait for the extension to fetch the content and generate a summary.
-4. Copy the summary using the **Copy to Clipboard** button if needed.
+2. Wait for the extension to fetch the content and generate a summary.
+3. Copy the summary using the **Copy to Clipboard** button if needed.
+
+If first time  using the extension, you will be prompted to select a model.
+![Screenshot of configuration](configuration.png)
 
 ---
 
@@ -87,7 +92,7 @@ A Chrome extension that allows you to summarize the content of any active web pa
 ---
 
 ## **Screenshot**
-![Screenshot of the Extension in Action](Screenshot_resized_1280x800.png)
+![Screenshot of the Extension in Action](summarised.png)
 
 ---
 
