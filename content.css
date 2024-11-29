@@ -1,0 +1,134 @@
+/* General styling for the popup */
+body {
+    font-family: Arial, sans-serif;
+    width: 500px; /* Set a larger width */
+    height: 600px; /* Set a larger height */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Header styling */
+  h3 {
+    background-color: #0078d4;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0;
+    font-size: 1.5em;
+  }
+  
+  /* Styling for the summary container */
+  #summary {
+    flex-grow: 1;
+    font-size: 14px;
+    line-height: 1.4; /* Slightly tighter line spacing */
+    color: #333;
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px 20px;
+    width: calc(100% - 40px);
+    overflow-y: auto;
+    white-space: pre-wrap;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Reduce spacing between paragraphs */
+  #summary p {
+    margin: 0; /* Remove top and bottom margins */
+    margin-bottom: 8px; /* Add consistent spacing between paragraphs */
+  }
+  
+  /* Reduce spacing for headings */
+  #summary strong {
+    display: block; /* Ensure bolded sections appear distinct */
+    margin-top: 10px; /* Space above */
+    margin-bottom: 5px; /* Space below */
+  }
+  
+  /* Reset list spacing */
+  #summary ul,
+  #summary ol {
+    margin: 0; /* Remove outer spacing */
+    padding-left: 20px; /* Keep proper indentation */
+  }
+  
+  #summary li {
+    margin: 0; /* Remove top and bottom margins */
+    margin-bottom: 5px; /* Add consistent spacing for readability */
+  }
+  
+  /* Inline code styling */
+  #summary code {
+    background-color: #f9f9f9;
+    padding: 2px 4px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+  }
+  
+  /* Links styling */
+  #summary a {
+    color: #0078d4;
+    text-decoration: none;
+  }
+  
+  #summary a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Button styling */
+  button {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #0056a8;
+  }
+  
+  /* Notification styling */
+  #notification {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #0078d4;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    animation: fadeOut 2s ease-out forwards;
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
