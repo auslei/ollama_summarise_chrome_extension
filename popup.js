@@ -1,13 +1,79 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Popup loaded.');
 
-  // Send message to start summarizing the page
-  chrome.runtime.sendMessage({
-    action: 'summarisePage',
-  });
-
   const summaryDiv = document.getElementById('summary');
   const copyButton = document.getElementById('copyButton');
+  const configureButton = document.getElementById('configureButton');
+  const configModal = document.getElementById('configModal');
+  const modelSelector = document.getElementById('modelSelector');
+  const saveConfigButton = document.getElementById('saveConfigButton');
+
+  // Check if a model is already configured
+  chrome.storage.sync.get('ollamaModel', (data) => {
+    if (!data.ollamaModel) {
+      // No model configured, show the configuration modal
+      showConfigModal();
+    } else {
+      // Proceed with summarization using the configured model
+      initializeSummarization(data.ollamaModel);
+    }
+  });
+
+  // Show configuration modal when the button is clicked
+  configureButton.addEventListener('click', () => {
+    showConfigModal();
+  });
+
+  // Fetch models from Ollama's /api/tags endpoint
+  function fetchModelsFromOllama() {
+    return fetch('http://localhost:11434/api/tags')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to fetch models: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Check if models exist in the response
+        if (data.models && Array.isArray(data.models)) {
+          modelSelector.innerHTML = ''; // Clear existing options
+          data.models.forEach((model) => {
+            const option = document.createElement('option');
+            option.value = model.name; // Use the model name as the value
+            option.textContent = model.name; // Display the model name in the dropdown
+            modelSelector.appendChild(option);
+          });
+        } else {
+          throw new Error('No models found in the response.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching models from Ollama:', error);
+        alert('Failed to fetch models. Make sure Ollama is running and accessible.');
+      });
+  }
+
+  // Show the configuration modal
+  function showConfigModal() {
+    fetchModelsFromOllama()
+      .then(() => {
+        configModal.style.display = 'block';
+        summaryDiv.style.display = 'none';
+        configureButton.style.display = 'none';
+      });
+  }
+
+  // Save the selected model
+  saveConfigButton.addEventListener('click', () => {
+    const selectedModel = modelSelector.value;
+    chrome.storage.sync.set({ ollamaModel: selectedModel }, () => {
+      alert(`Model "${selectedModel}" saved successfully!`);
+      configModal.style.display = 'none';
+      summaryDiv.style.display = 'block';
+      configureButton.style.display = 'block';
+      initializeSummarization(selectedModel);
+    });
+  });
 
   // Initially disable the copy button
   copyButton.disabled = true;
@@ -31,6 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Failed to copy text. Please try again.');
     }
   });
+
+  // Initialize summarization
+  function initializeSummarization(model) {
+    summaryDiv.innerHTML = `<p style="text-align: center;">Loading summary...</p>`;
+    chrome.runtime.sendMessage({ action: 'summarisePage', model: model });
+  }
 
   // Listen for messages from the background script
   chrome.runtime.onMessage.addListener((request) => {

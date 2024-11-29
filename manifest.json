@@ -2,14 +2,14 @@
   "manifest_version": 3,
   "name": "Web Summariser (Ollama)",
   "version": "0.1",
-  "description": "This extension will use Ollama models to summarise current active tab.",
+  "description": "Summarise the current active tab using Ollama models.",
   "permissions": [
     "activeTab",
     "scripting",
-    "tabs"
+    "storage"
   ],
   "host_permissions": [
-  "http://localhost:11434/*"
+    "http://localhost:11434/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -24,7 +24,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": ["https://*/*", "http://*/*"],  // Scope content.js to HTTP(S) pages only
       "js": ["content.js"]
     }
   ]

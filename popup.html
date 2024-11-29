@@ -7,6 +7,17 @@
   <body>
     <h3>Summariser</h3>
     <div id="summary">Summary will appear here...</div>
+    
+    <button id="configureButton">Configuration</button>
+
+    <!-- Configuration Modal -->
+    <div id="configModal" style="display: none;">
+      <h3>Configure Model</h3>
+      <p>Select a model from Ollama:</p>
+      <select id="modelSelector"></select>
+      <button id="saveConfigButton">Save</button>
+    </div>
+
     <button id="copyButton" disabled>Copy to Clipboard</button>
     <div id="notification" style="display: none;">Copied to clipboard!</div>
     <script src="libs/marked.min.js"></script>
