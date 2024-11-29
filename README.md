@@ -45,6 +45,19 @@ A Chrome extension that allows you to summarize the content of any active web pa
    ```bash
    launchctl setenv OLLAMA_ORIGINS "*"
    ```
+
+   For windows:
+   
+   Under User variables, click New and add:
+    - Name: OLLAMA_ORIGINS
+	- Value: *
+
+    or, in command prompt:
+
+    ```
+    setx OLLAMA_ORIGINS "*"
+    ```
+
 4. Download a model:
    ```bash
    ollama pull llama3.2
