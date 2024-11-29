@@ -27,8 +27,8 @@ A Chrome extension that allows you to summarize the content of any active web pa
 ### **Step 1: Clone or Download the Extension**
 1. Clone this repository or download it as a ZIP file.
    ```bash
-   git clone https://github.com/your-repo/web-page-summarizer.git
-   cd web-page-summarizer
+   git clone git@github.com:auslei/ollama_summarise_chrome_extension.git
+   cd ollama_summarise_chrome_extension
    ```
 
 2. Extract the ZIP file if downloaded.
