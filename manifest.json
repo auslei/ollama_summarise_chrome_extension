@@ -4,7 +4,7 @@
   "version": "0.1",
   "description": "Summarise the current active tab using Ollama models.",
   "permissions": [
-    "activeTab",
+  //  "activeTab",
     "scripting",
     "storage"
   ],
